@@ -48,6 +48,13 @@ echo "Generating deepcopy funcs"
   --output-file-base=zz_generated.deepcopy \
   ${COMMON_FLAGS}
 
+echo "Generating register at ${FQ_APIS}"
+"${gobin}/register-gen" \
+  --input-dirs=sigs.k8s.io/work-api/pkg/apis/v1alpha1 \
+  --output-package=sigs.k8s.io/work-api/pkg/apis/v1alpha1 \
+  --output-file-base=zz_generated.register \
+  ${COMMON_FLAGS}
+
 #echo "Generating clientset at ${OUTPUT_PKG}/${CLIENTSET_PKG_NAME}"
 #"${gobin}/client-gen" --clientset-name "${CLIENTSET_NAME}" --input-base "" --input "${FQ_APIS}" --output-package "${OUTPUT_PKG}/${CLIENTSET_PKG_NAME}" ${COMMON_FLAGS}
 
@@ -62,5 +69,4 @@ echo "Generating deepcopy funcs"
 #         --output-package "${OUTPUT_PKG}/informers" \
 #         ${COMMON_FLAGS}
 
-#echo "Generating register at ${FQ_APIS}"
-#"${gobin}/register-gen" --output-package "${FQ_APIS}" --input-dirs ${FQ_APIS} ${COMMON_FLAGS}
+
