@@ -39,7 +39,12 @@ fi
 COMMON_FLAGS="${VERIFY_FLAG:-} --go-header-file ${SCRIPT_ROOT}/hack/boilerplate.go.txt"
 
 echo "Generating deepcopy funcs"
-"${gobin}/deepcopy-gen" --input-dirs "${FQ_APIS}" -O zz_generated.deepcopy --output-package "${FQ_APIS}" ${COMMON_FLAGS}
+#"${gobin}/deepcopy-gen" --input-dirs "${FQ_APIS}" -O zz_generated.deepcopy --output-package "${FQ_APIS}" ${COMMON_FLAGS}
+"${gobin}/deepcopy-gen" \
+  --go-header-file hack/boilerplate.go.txt \
+  --input-dirs=sigs.k8s.io/work-api/pkg/apis/v1alpha1 \
+  --output-package=sigs.k8s.io/work-api/pkg/apis/v1alpha1 \
+  --output-file-base=zz_generated.deepcopy
 
 #echo "Generating clientset at ${OUTPUT_PKG}/${CLIENTSET_PKG_NAME}"
 #"${gobin}/client-gen" --clientset-name "${CLIENTSET_NAME}" --input-base "" --input "${FQ_APIS}" --output-package "${OUTPUT_PKG}/${CLIENTSET_PKG_NAME}" ${COMMON_FLAGS}
