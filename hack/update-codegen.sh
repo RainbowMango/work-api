@@ -63,8 +63,11 @@ echo "Generating clientset at ${OUTPUT_PKG}/${CLIENTSET_PKG_NAME}"
   --clientset-name=versioned \
   ${COMMON_FLAGS}
 
-#echo "Generating listers at ${OUTPUT_PKG}/listers"
-#"${gobin}/lister-gen" --input-dirs "${FQ_APIS}" --output-package "${OUTPUT_PKG}/listers" ${COMMON_FLAGS}
+echo "Generating listers at ${OUTPUT_PKG}/listers"
+"${gobin}/lister-gen" \
+  --input-dirs=sigs.k8s.io/work-api/pkg/apis/v1alpha1 \
+  --output-package=sigs.k8s.io/work-api/pkg/client/listers \
+  ${COMMON_FLAGS}
 
 #echo "Generating informers at ${OUTPUT_PKG}/informers"
 #"${gobin}/informer-gen" \
