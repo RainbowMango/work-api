@@ -69,12 +69,10 @@ echo "Generating listers at ${OUTPUT_PKG}/listers"
   --output-package=sigs.k8s.io/work-api/pkg/client/listers \
   ${COMMON_FLAGS}
 
-#echo "Generating informers at ${OUTPUT_PKG}/informers"
-#"${gobin}/informer-gen" \
-#         --input-dirs "${FQ_APIS}" \
-#         --versioned-clientset-package "${OUTPUT_PKG}/${CLIENTSET_PKG_NAME}/${CLIENTSET_NAME}" \
-#         --listers-package "${OUTPUT_PKG}/listers" \
-#         --output-package "${OUTPUT_PKG}/informers" \
-#         ${COMMON_FLAGS}
-
-
+echo "Generating informers at ${OUTPUT_PKG}/informers"
+"${gobin}/informer-gen" \
+  --input-dirs=sigs.k8s.io/work-api/pkg/apis/v1alpha1 \
+  --versioned-clientset-package=sigs.k8s.io/work-api/pkg/client/clientset/versioned \
+  --listers-package=sigs.k8s.io/work-api/pkg/client/listers \
+  --output-package=sigs.k8s.io/work-api/pkg/client/informers \
+  ${COMMON_FLAGS}
